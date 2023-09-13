@@ -290,7 +290,7 @@ func (c *command) tryFallback(ctx context.Context, err error) error {
 	fallbackErr := c.fallback(ctx, err)
 	if fallbackErr != nil {
 		c.reportEvent("fallback-failure")
-		return fallbackErr
+		return fmt.Errorf("fallback failed with '%w'.", fallbackErr)
 	}
 
 	c.reportEvent("fallback-success")
